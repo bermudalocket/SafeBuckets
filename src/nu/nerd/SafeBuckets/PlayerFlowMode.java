@@ -8,6 +8,12 @@ enum PlayerFlowMode {
 
     // ------------------------------------------------------------------------
     /**
+     * Players may freely flow all liquids.
+     */
+    ALL,
+
+    // ------------------------------------------------------------------------
+    /**
      * Players will only be able to flow liquids in WorldGuard regions they own.
      */
     OWNER,

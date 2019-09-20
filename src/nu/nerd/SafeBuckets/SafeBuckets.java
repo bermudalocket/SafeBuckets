@@ -235,7 +235,9 @@ public class SafeBuckets extends JavaPlugin {
         if (!CONFIG.PLAYER_SELF_FLOW) {
             return false;
         }
-
+        if (CONFIG.PLAYER_SELF_FLOW_MODE == PlayerFlowMode.ALL) {
+            return true;
+        }
         com.sk89q.worldedit.world.World wrappedWorld = BukkitAdapter.adapt(block.getWorld());
         RegionManager regions = WorldGuard.getInstance().getPlatform().getRegionContainer().get(wrappedWorld);
         LocalPlayer wgPlayer = WorldGuardPlugin.inst().wrapPlayer(player);
@@ -251,7 +253,6 @@ public class SafeBuckets extends JavaPlugin {
                 case MEMBER:
                     return applicable.isMemberOfAll(wgPlayer) && applicable.size() > 0;
             }
-
         }
         return false;
     }
