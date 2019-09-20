@@ -25,10 +25,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.sothatsit</groupId>
+            <groupId>com.github.bermudalocket</groupId>
             <artifactId>blockstore</artifactId>
-            <version>1.6.1</version>
-            <scope>provided</scope>
+            <version>e6f5b1e</version>
         </dependency>
         <dependency>
             <groupId>com.sk89q.worldedit</groupId>
@@ -58,6 +57,10 @@
         <repository>
             <id>sk89q-repo</id>
             <url>http://maven.sk89q.com/repo/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io/</url>
         </repository>
     </repositories>
 
