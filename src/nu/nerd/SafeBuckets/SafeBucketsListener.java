@@ -13,6 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -282,7 +283,7 @@ public class SafeBucketsListener implements Listener {
                 } else {
                     SafeBuckets.setSafe(relativeBlock, true);
                 }
-            } else if (relativeBlock.getType() == Material.SIGN || relativeBlock.getType() == Material.WALL_SIGN) {
+            } else if (Tag.SIGNS.isTagged(relativeBlock.getType())) {
                 //quick fix for bug where water placed on a sign flows
                 SafeBuckets.setSafe(relativeBlock, true);
             } else if (Util.AIR_BLOCKS.contains(relativeBlock.getType())) {
@@ -320,7 +321,9 @@ public class SafeBucketsListener implements Listener {
         }
 
         // relative block is water or lava
-        if (relativeBlock.getType() == Material.WATER || relativeBlock.getType() == Material.LAVA) {
+        if (relativeBlock.getType() == Material.WATER ||
+            relativeBlock.getType() == Material.LAVA ||
+            relativeBlock.getType() == Material.BUBBLE_COLUMN) {
             if (SafeBuckets.isSafe(relativeBlock)) {
                 // if it's safe: flow, replenish, exit
                 SafeBuckets.setSafe(relativeBlock, false);
@@ -437,7 +440,9 @@ public class SafeBucketsListener implements Listener {
             return;
         }
 
-        if (relativeBlock.getType() == Material.WATER || relativeBlock.getType() == Material.LAVA) {
+        if (relativeBlock.getType() == Material.WATER ||
+            relativeBlock.getType() == Material.LAVA ||
+            relativeBlock.getType() == Material.BUBBLE_COLUMN) {
             if (SafeBuckets.isSafe(relativeBlock)) {
                 event.setCancelled(true);
                 if (SafeBuckets.isPlayerFlowPermitted(player, relativeBlock)) {
